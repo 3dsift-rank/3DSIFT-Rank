@@ -40,6 +40,9 @@ Usage: **featMatchMultiple [options] -f \<input filelist\>**
   <tr>
     <td>-n</td><td>Number of nearest neighbors. Default: 5.</td> 
   </tr>
+   <tr>
+    <td>-r-</td><td>Use only unrotated features.</td> 
+  </tr>
  </table>
 
 #### Output
