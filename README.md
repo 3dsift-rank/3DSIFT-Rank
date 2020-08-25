@@ -1,5 +1,9 @@
 # 3DSIFT-Rank
 
+## Publication
+
+<a href="https://doi.org/10.1016/j.neuroimage.2019.116208">Chauvin, L., Kumar, K., Wachinger, C., Vangel, M., de Guise, J., Desrosiers, C., Wells, W., Toews, M. and Alzheimer’s Disease Neuroimaging Initiative, 2020. Neuroimage signature from salient keypoints is highly specific to individuals and shared by close relatives. NeuroImage, 204, p.116208.</a>
+
 ## FeatExtract
 featExtract is the program used to extract SIFT-Ranked [1] features from images. It accepts nifti images (.nii, .hdr, .nii.gz) as input, and output a list of keypoints and their descriptors.
 
