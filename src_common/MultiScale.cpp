@@ -46,7 +46,7 @@ float fHist2ndPeakThreshold = 0.5f;
 Feature3DInfo::Feature3DInfo(
 )
 {
-	std::memset(m_pfPC, 0, sizeof(m_pfPC));
+	memset(m_pfPC, 0, sizeof(m_pfPC));
 	ZeroData();
 }
 
@@ -914,7 +914,7 @@ generateFeatures3D_efficient(
 	fioAllocate(featSample);
 
 
-	FEATUREIO featJunk; std::memset(&featJunk, 0, sizeof(featJunk));
+	FEATUREIO featJunk; memset(&featJunk, 0, sizeof(featJunk));
 
 	int bInterpolate = 1;
 
@@ -1255,7 +1255,7 @@ generateFeature3D(
 
 
 	// Determine feature image content - init rotation to identity
-	std::memset(&(feat3D.ori[0][0]), 0, sizeof(feat3D.ori));
+	memset(&(feat3D.ori[0][0]), 0, sizeof(feat3D.ori));
 	feat3D.ori[0][0] = 1; feat3D.ori[1][1] = 1; feat3D.ori[2][2] = 1;
 	if (sampleImage3D(feat3D, fioSample, fioImg, fioDx, fioDy, fioDz) != 0)
 	{

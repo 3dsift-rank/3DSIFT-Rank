@@ -95,9 +95,9 @@ public:
 		y = feat3D.y;
 		z = feat3D.z;
 		scale = feat3D.scale;
-		std::memcpy(&(m_pfPC[0]), &(feat3D.m_pfPC[0]), sizeof(m_pfPC));
-		std::memcpy(&(ori[0][0]), &(feat3D.ori[0][0]), sizeof(ori));
-		std::memcpy(&(eigs[0]), &(feat3D.eigs[0]), sizeof(eigs));
+		memcpy(&(m_pfPC[0]), &(feat3D.m_pfPC[0]), sizeof(m_pfPC));
+		memcpy(&(ori[0][0]), &(feat3D.ori[0][0]), sizeof(ori));
+		memcpy(&(eigs[0]), &(feat3D.eigs[0]), sizeof(eigs));
 		return 0;
 	}
 
