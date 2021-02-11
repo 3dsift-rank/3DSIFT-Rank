@@ -404,33 +404,44 @@ msNearestNeighborApproximateSearchSelf(
 			float fAppWeight = std::exp(-fDistSqApp / fVarApp);
 
 			// ----------------------------------------------------------------------------------------
+			// Geometrical Weight
+
+			float fScn = 25;
+
+			// 'Gravitational' Distance
+			float fDistSqGeom = fDx*fDx + fDy*fDy + fDz*fDz;
+
+			float fVarGeom = fSc1*fSc2;
+
+			float fGeoWeight = std::exp(-fDistSqGeom / (fVarGeom*fVarGeom));
+
+			// ----------------------------------------------------------------------------------------
+			// Scale Weight
+
+			float fDistSqScale = std::pow(std::log(fSc1) - std::log(fSc2), 2);
+			
+			float fVarScale = 1;
+			
+			float fScaleWeight = std::exp(-fDistSqScale / fVarScale);
+
+			// ----------------------------------------------------------------------------------------
 			// Total Weight
 			
-			float fTotalWeight = fAppWeight;
+			float eta = 1; // Background distribution
+
+			float fTotalWeight = fAppWeight * fGeoWeight * fScaleWeight;
+			fTotalWeight += eta;
+			fTotalWeight = std::log(fTotalWeight);
+			fTotalWeight /= std::log(eta + 1);
 
 			weights.push_back(fTotalWeight);
-			fSumWeights += fTotalWeight;
 		}
 		
-		// Avoid division-by-0
-		if (fSumWeights <= 0) {
-			continue;
-		}
-
-		// SoftMax + log
-		float eta = 1; // Background distribution
-		for (int j = 0; j < weights.size(); ++j)
-		  {
-		    weights[j] /= fSumWeights;
-		    
-		    weights[j] += eta;
-		    weights[j] = std::log(weights[j]);
-		    weights[j] /= std::log(eta + 1);
-		  }
-		    
 		// Now add results based on min distance neighbor 
+		//for( int j = 0; j < g_SS.g_nn; j++ )
 		for (int j = 0; j < indexNN.size(); ++j)
 		{
+			//int iResultFeatIndex = g_SS.g_piResult[i*g_SS.g_nn+j];
 			int iResultFeatIndex = indexNN[j].first;
 			int iLabel = g_SS.g_piFeatureLabels[iResultFeatIndex];
 			int iImage = g_SS.g_piFeatureImageIndex[iQueryFeatIndex];
